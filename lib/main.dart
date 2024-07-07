@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: scaffoldBackgroundColor,
-      ),
+      // theme: ThemeData.dark().copyWith(
+      //   scaffoldBackgroundColor: scaffoldBackgroundColor,
+      // ),
       home: const SplashView(),
     );
   }
