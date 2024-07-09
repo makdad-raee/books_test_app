@@ -9,7 +9,9 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       backgroundColor: scaffoldBackgroundColor,
-      body: SplashViewBody(),
+      body: const SplashViewBody(),
+      
+
     );
   }
 }

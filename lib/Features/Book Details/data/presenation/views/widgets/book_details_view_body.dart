@@ -1,101 +1,72 @@
+import 'package:books_test_app/Features/AddNewBooks/data/models/books_model.dart';
+import 'package:books_test_app/Features/Book%20Details/data/presenation/views/book_details_view.dart';
+import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/book_details_section.dart';
+import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/custom_appbar_book_details.dart';
+import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/custom_book_image.dart';
 import 'package:books_test_app/constants.dart';
+import 'package:books_test_app/core/utils/Books/books.dart';
 import 'package:flutter/material.dart';
 
 class BookDetailsViewBody extends StatelessWidget {
-  const BookDetailsViewBody({super.key});
+  const BookDetailsViewBody({
+    super.key,
+    required this.booksModel,
+  });
+  final BooksModel booksModel;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Container(
-            height: 350,
-            width: 250,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(width: .5, color: Colors.black12),
-                image: const DecorationImage(
-                    image: NetworkImage(personPIc), fit: BoxFit.cover),
-                color: Colors.grey),
+    return CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                const CustomAppbarBookDetails(),
+                BookDetailsSection(booksModel: booksModel),
+                const Expanded(
+                  child: SizedBox(
+                    height: 0,
+                  ),
+                ),
+                Text(
+                  'similar books',
+                  style: style24.copyWith(fontStyle: FontStyle.italic),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: 5,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  BookDetailsView(booksModel: books[index]),
+                            ));
+                          },
+                          child: CustomBookImage(
+                            bookPic: books[index].image,
+                          )),
+                    ),
+                  ),
+                ),
+                // const SimilarBooksSection(),
+                const SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
-        Text('Lenardo davinchi', style: style30),
-        Text('Diana oil', style: style16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.star,
-              size: 36,
-              color: Colors.yellow,
-            ),
-            const Icon(
-              Icons.star,
-              size: 36,
-              color: Colors.yellow,
-            ),
-            const Icon(
-              Icons.star_border_rounded,
-              size: 36,
-              color: Colors.grey,
-            ),
-            const Icon(
-              Icons.star_border_rounded,
-              size: 36,
-              color: Colors.grey,
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Text('4.5', style: style18.copyWith(fontWeight: FontWeight.bold)),
-            Text('/5', style: style18.copyWith(color: Colors.grey)),
-          ],
-        ),
-        Text(
-          'What is Lorem IpsumLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
-          style: style16,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 6,
-        ),
-        const SizedBox(
-          height: 24,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 50,
-              width: 120,
-              decoration: const BoxDecoration(
-                border: Border(right: BorderSide(width: 0.3)),
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    bottomLeft: Radius.circular(16)),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [Icon(Icons.mode_comment_sharp), Text('Previews ')],
-              ),
-            ),
-            Container(
-              height: 50,
-              width: 120,
-              decoration: const BoxDecoration(
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(16),
-                    bottomRight: Radius.circular(16)),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [Icon(Icons.mode_comment_sharp), Text('Reviews ')],
-              ),
-            )
-          ],
-        )
       ],
     );
   }
