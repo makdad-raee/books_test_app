@@ -10,10 +10,12 @@ class BooksChangeBottomNavState extends BooksState {}
 
 class BooksSuccesState extends BooksState {}
 
-class BooksErrorState extends BooksState {
-  final String error;
+class PickedbookImageSuccesState extends BooksState {}
 
-  BooksErrorState({required this.error});
-}
-class PickedbookImageSuccesState extends BooksState{}
-class PickedbookImageErrorState extends BooksState{}
+class PickedbookImageErrorState extends BooksState {}
+
+class AddNewBooksLoadigState extends BooksState {}
+
+class AddNewBooksErrorState extends BooksState {}
+
+class AddNewBookssucessState extends BooksState {}

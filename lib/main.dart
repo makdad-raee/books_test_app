@@ -1,3 +1,4 @@
+import 'package:books_test_app/Features/AddNewBooks/data/models/books_model.dart';
 import 'package:books_test_app/Features/splash/presentation/views/splash_view.dart';
 import 'package:books_test_app/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main()async {
   await Hive.initFlutter();
  await Hive.openBox(boxName);
+ Hive.registerAdapter(BooksModelAdapter());
   runApp(const MyApp());
 }
 
