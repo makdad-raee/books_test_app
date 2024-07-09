@@ -5,8 +5,10 @@ import 'package:books_test_app/Features/Favourite/presentaion/views/favourite_bo
 import 'package:books_test_app/Features/Home/presentation/views/widgets/home_view_body.dart';
 import 'package:books_test_app/Features/manger/cubit/books_state.dart';
 import 'package:books_test_app/Features/saved_books.dart/presentation/views/widgets/saved_books_view_body.dart';
+import 'package:books_test_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 
 class BookCubit extends Cubit<BooksState> {
@@ -36,19 +38,19 @@ class BookCubit extends Cubit<BooksState> {
     }
   }
 
-  void addBooks({
-    required String name,
-    required String author,
-    required String image,
-    required String category,
-  }) {
-    BooksModel(
-      name: name,
-      author: author,
-      image: image,
-      category: category,
-    );
+  void addBook ({
+    required BooksModel bookmodel,
+  })async {
+    emit(AddNewBooksLoadigState());
+    var noteBox = Hive.box<BooksModel>(boxName);
+
+   await noteBox.add(bookmodel).then((value) {
+    emit(AddNewBookssucessState());
+   }).catchError((error){
+    emit(AddNewBooksErrorState());
+   });
   }
+
   final ImagePicker picker = ImagePicker();
   File? profileimage;
   Future<void> pickProfileImage() async {
@@ -61,5 +63,4 @@ class BookCubit extends Cubit<BooksState> {
       emit(PickedbookImageErrorState());
     }
   }
-
 }
