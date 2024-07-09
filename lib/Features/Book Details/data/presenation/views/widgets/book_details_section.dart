@@ -1,5 +1,4 @@
 import 'package:books_test_app/Features/AddNewBooks/data/models/books_model.dart';
-import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/book_action.dart';
 import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/book_rating.dart';
 import 'package:books_test_app/Features/Book%20Details/data/presenation/views/widgets/custom_book_image.dart';
 import 'package:books_test_app/constants.dart';
@@ -43,24 +42,23 @@ class BookDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 14,
         ),
-        BookRating(
+        const BookRating(
           count: 5,
           rating: 'rating',
-          // count: booksModel.volumeInfo.pageCount ?? 0,
-          // rating: booksModel.volumeInfo.maturityRating ?? '',
+     
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
-        Text(
+        const Text(
           lorem,
           style: TextStyle(fontStyle: FontStyle.italic),
         ),
         const SizedBox(
           height: 37,
         ),
-        BooksAction(),
+       
       ],
     );
   }

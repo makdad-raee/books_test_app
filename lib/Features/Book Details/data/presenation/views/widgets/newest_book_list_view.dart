@@ -2,8 +2,8 @@ import 'package:books_test_app/Features/Book%20Details/data/presenation/views/wi
 import 'package:books_test_app/core/utils/Books/books.dart';
 import 'package:flutter/material.dart';
 
-class BestSellerListView extends StatelessWidget {
-  const BestSellerListView({super.key});
+class NewsetBookListView extends StatelessWidget {
+  const NewsetBookListView({super.key});
 
   @override
   Widget build(BuildContext context) {

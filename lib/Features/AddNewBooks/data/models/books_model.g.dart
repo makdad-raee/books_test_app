@@ -16,15 +16,26 @@ class BooksModelAdapter extends TypeAdapter<BooksModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return BooksModel(name:  fields[0] as String,
-    author:  fields[1] as String,
-    image:  fields[2] as String,
-    category:  fields[3] as String,);
+    return BooksModel(
+      name: fields[0] as String,
+      author: fields[1] as String,
+      image: fields[2] as String,
+      category: fields[3] as String,
+    );
   }
 
   @override
   void write(BinaryWriter writer, BooksModel obj) {
-    writer.writeByte(0);
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.author)
+      ..writeByte(2)
+      ..write(obj.image)
+      ..writeByte(3)
+      ..write(obj.category);
   }
 
   @override

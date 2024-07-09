@@ -1,10 +1,9 @@
-import 'package:books_test_app/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class CustomBookImage extends StatelessWidget {
   const CustomBookImage({super.key, l, required this.bookPic});
-final String bookPic; 
+  final String bookPic;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(

@@ -1,8 +1,11 @@
+import 'package:books_test_app/Features/AddNewBooks/data/models/books_model.dart';
 import 'package:books_test_app/Features/manger/cubit/books_cubit.dart';
 import 'package:books_test_app/Features/manger/cubit/books_state.dart';
+import 'package:books_test_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 
 class AddNewBooksViewBody extends StatefulWidget {
   const AddNewBooksViewBody({super.key});
@@ -41,18 +44,16 @@ class _AddNewBooksViewBodyState extends State<AddNewBooksViewBody> {
                     height: height * 0.03,
                   ),
                   CircleAvatar(
-                            //backgroundColor: Theme.scaffoldBackgroundColor,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {
-                                
-                              },
-                              icon: const Icon(
-                                FontAwesomeIcons.camera,
-                                size: 20,
-                              ),
-                            ),
-                          ),
+                    //backgroundColor: Theme.scaffoldBackgroundColor,
+                    radius: 20,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        FontAwesomeIcons.camera,
+                        size: 20,
+                      ),
+                    ),
+                  ),
                   CustomTExtFormField(
                       controller: ctegorycontroller,
                       hintText: 'Name of the book',
@@ -63,14 +64,14 @@ class _AddNewBooksViewBodyState extends State<AddNewBooksViewBody> {
                   CustomTExtFormField(
                       controller: nameController,
                       hintText: 'Author Name',
-                      icon: Icons.mail),
+                      icon: Icons.person),
                   SizedBox(
                     height: height * 0.03,
                   ),
                   CustomTExtFormField(
                       controller: autherNamecontroller,
-                      hintText: 'Category',
-                      textInputType: TextInputType.emailAddress,
+                      hintText: 'Year',
+                      textInputType: TextInputType.number,
                       icon: Icons.category),
                   SizedBox(
                     height: height * 0.03,
@@ -82,12 +83,18 @@ class _AddNewBooksViewBodyState extends State<AddNewBooksViewBody> {
                         alignment: Alignment.center,
                         child: IconButton(
                           onPressed: () {
+                            BooksModel bookmodel = BooksModel(
+                                name: nameController.text,
+                                author: autherNamecontroller.text,
+                                image: bookPic,
+                                category: ctegorycontroller.text);
                             if (formkey.currentState!.validate()) {
-                              BookCubit.get(context).addBooks(
-                                  name: nameController.text,
-                                  author: autherNamecontroller.text,
-                                  image: '',
-                                  category: ctegorycontroller.text);
+                              BookCubit.get(context)
+                                  .addBook(bookmodel: bookmodel);
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    
+                                  });
                             }
                           },
                           icon: const Icon(
