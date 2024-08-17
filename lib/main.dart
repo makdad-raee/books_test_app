@@ -22,7 +22,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BooksModelAdapter());
   await Hive.openBox<BooksModel>('books');
-    await Hive.openBox<BooksModel>('favourites');
+  await Hive.openBox<BooksModel>('favourites');
 
   runApp(const MyApp());
 }

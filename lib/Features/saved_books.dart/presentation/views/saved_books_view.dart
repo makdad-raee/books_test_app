@@ -10,11 +10,14 @@ class SavedBooksView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Saved Books',style: TextStyle(fontStyle: FontStyle.italic),),
+        title: const Text(
+          'Saved Books',
+          style: TextStyle(fontStyle: FontStyle.italic),
+        ),
         backgroundColor: scaffoldBackgroundColor,
-        leading: SizedBox(),
+        leading: const SizedBox(),
       ),
-      body: SavedBooksViewBody(),
+      body: const SavedBooksViewBody(),
     );
   }
 }

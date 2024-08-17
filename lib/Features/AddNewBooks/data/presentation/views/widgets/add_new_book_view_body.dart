@@ -5,7 +5,6 @@ import 'package:books_test_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 
 class AddNewBooksViewBody extends StatefulWidget {
   const AddNewBooksViewBody({super.key});
@@ -42,17 +41,6 @@ class _AddNewBooksViewBodyState extends State<AddNewBooksViewBody> {
                   ),
                   SizedBox(
                     height: height * 0.03,
-                  ),
-                  CircleAvatar(
-                    //backgroundColor: Theme.scaffoldBackgroundColor,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        FontAwesomeIcons.camera,
-                        size: 20,
-                      ),
-                    ),
                   ),
                   CustomTExtFormField(
                       controller: ctegorycontroller,
@@ -91,10 +79,8 @@ class _AddNewBooksViewBodyState extends State<AddNewBooksViewBody> {
                             if (formkey.currentState!.validate()) {
                               BookCubit.get(context)
                                   .addBook(bookmodel: bookmodel);
-                                  Navigator.of(context).pop();
-                                  setState(() {
-                                    
-                                  });
+                              Navigator.of(context).pop();
+                              setState(() {});
                             }
                           },
                           icon: const Icon(

@@ -9,7 +9,6 @@ import 'package:books_test_app/Features/saved_books.dart/presentation/views/save
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:image_picker/image_picker.dart';
 
 class BookCubit extends Cubit<BooksState> {
   BookCubit() : super(BooksInitialState());
@@ -102,16 +101,5 @@ class BookCubit extends Cubit<BooksState> {
     emit(GetFavouriteBooksErrorState());
   }
 
-  final ImagePicker picker = ImagePicker();
-  File? profileimage;
-  Future<void> pickProfileImage() async {
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    if (pickedImage != null) {
-      profileimage = File(pickedImage.path);
-      emit(PickedbookImageSuccesState());
-    } else {
-      print('No  Image Selected');
-      emit(PickedbookImageErrorState());
-    }
-  }
+  
 }
